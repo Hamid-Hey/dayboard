@@ -11,6 +11,10 @@ body {
   padding: 0;
 }
 
+input:focus {
+  outline: none;
+}
+
 .table__header {
   color: blue;
   border: 1px solid red;
@@ -179,10 +183,17 @@ table > thead {
   color: rgb(99, 99, 99);
   background: none;
   text-align: center;
-  width: 65px;
+  width: 100px;
+  height: 30px;
   border: none;
 }
 
+
+
 .table__cell:hover {
   background-color: rgb(193, 243, 221);
+}
+
+.table__cell-sleep {
+  padding: 0px !important;
 }
