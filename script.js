@@ -126,7 +126,11 @@ function timeFormater(timeInSeconds) {
   const minutes = Math.floor((timeInSeconds - hours * 3600) / 60);
   const seconds = Math.floor(timeInSeconds - (hours * 3600 + minutes * 60));
 
-  return `${hours}:${minutes}:${seconds}`;
+  if (hours + minutes + seconds !== 0) {
+    return `${hours}:${minutes}:${seconds}`;
+  } else {
+    return "";
+  }
 }
 
 function onBlur() {
