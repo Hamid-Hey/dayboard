@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>i-Logger</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <table class="table">
+      <thead class="table__header">
+        <tr class="table__row">
+          <td class="week-days empty-cell"></td>
+          <td class="table__cell table__header-cell">Date</td>
+          <td class="table__cell table__header-cell">Sleep</td>
+          <td class="table__cell table__header-cell">Rest</td>
+          <td class="table__cell table__header-cell">Motivational</td>
+          <td class="table__cell table__header-cell">Programming</td>
+          <td class="table__cell-added">+</td>
+        </tr>
+      </thead>
+
+      <tbody class="table__body">
+        <tr class="table__row" id="Sunday">
+          <td class="week-days">Sun</td>
+          <td class="table__cell table__date"></td>
+          <td class="table__cell">
+            <input
+              type="text"
+              class="input"
+              id="sleep__sunday"
+              onblur="onBlur()"
+            />
+          </td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell-added"></td>
+        </tr>
+
+        <tr class="table__row" id="Monday">
+          <td class="week-days">Mon</td>
+          <td class="table__cell table__date"></td>
+          <td class="table__cell">
+            <input
+              type="text"
+              class="input"
+              id="sleep__monday"
+              onblur="onBlur()"
+            />
+          </td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell-added"></td>
+        </tr>
+
+        <tr class="table__row" id="Tuesday">
+          <td class="week-days">Tue</td>
+          <td class="table__cell table__date"></td>
+          <td class="table__cell">
+            <input
+              type="text"
+              class="input"
+              id="sleep__tuesday"
+              onblur="onBlur()"
+            />
+          </td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell-added"></td>
+        </tr>
+
+        <tr class="table__row" id="Wednesday">
+          <td class="week-days">Wed</td>
+          <td class="table__cell table__date"></td>
+          <td class="table__cell">
+            <input
+              type="text"
+              class="input"
+              id="sleep__wednesday"
+              onblur="onBlur()"
+            />
+          </td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell-added"></td>
+        </tr>
+
+        <tr class="table__row" id="Thursday">
+          <td class="week-days">thu</td>
+          <td class="table__cell table__date"></td>
+          <td class="table__cell">
+            <input
+              type="text"
+              class="input"
+              id="sleep__thursday"
+              onblur="onBlur()"
+            />
+          </td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell-added"></td>
+        </tr>
+
+        <tr class="table__row" id="Friday">
+          <td class="week-days">Fri</td>
+          <td class="table__cell table__date"></td>
+          <td class="table__cell">
+            <input
+              type="text"
+              class="input"
+              id="sleep__friday"
+              onblur="onBlur()"
+            />
+          </td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell-added"></td>
+        </tr>
+
+        <tr class="table__row" id="Saturday">
+          <td class="week-days">Sat</td>
+          <td class="table__cell table__date"></td>
+          <td class="table__cell">
+            <input
+              type="text"
+              class="input"
+              id="sleep__saturday"
+              onblur="onBlur()"
+            />
+          </td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell"></td>
+          <td class="table__cell-added"></td>
+        </tr>
+
+        <tr class="table__row">
+          <td class="week-days empty-cell"></td>
+          <td class="table__cell table__bottomline">Average</td>
+          <td class="table__cell table__bottomline-cell" id="sleep__average"></td>
+          <td class="table__cell table__bottomline-cell"></td>
+          <td class="table__cell table__bottomline-cell"></td>
+          <td class="table__cell table__bottomline-cell"></td>
+          <td class="table__cell-added"></td>
+        </tr>
+
+        <tr class="table__row">
+          <td class="week-days empty-cell"></td>
+          <td class="table__cell table__bottomline">Total</td>
+          <td class="table__cell table__bottomline-cell" id="sleep__total"></td>
+          <td class="table__cell table__bottomline-cell"></td>
+          <td class="table__cell table__bottomline-cell"></td>
+          <td class="table__cell table__bottomline-cell"></td>
+          <td class="table__cell-added"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script src="moment.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
