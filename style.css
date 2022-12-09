@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  margin: 30px;
+  margin: 0px;
   padding: 0;
 }
 
@@ -188,12 +188,30 @@ table > thead {
   border: none;
 }
 
-
-
 .table__cell:hover {
   background-color: rgb(193, 243, 221);
 }
 
 .table__cell-sleep {
   padding: 0px !important;
+}
+
+.time-picker {
+  position: absolute;
+  display: inline-block;
+  padding: 6px;
+  background: #eeeeee;
+  border-radius: 5px;
+}
+
+.time-picker__select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  text-align: center;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
 }
