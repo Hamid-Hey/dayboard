@@ -113,9 +113,11 @@
           <td class="table__cell table__cell-sleep">
             <input
               type="text"
-              class="input"
+              class="input time-pickable"
+              value="12:30"
               id="sleep__friday"
               onblur="onBlur()"
+              readonly
             />
           </td>
           <td class="table__cell"></td>
@@ -144,7 +146,10 @@
         <tr class="table__row">
           <td class="week-days empty-cell"></td>
           <td class="table__cell table__bottomline">Average</td>
-          <td class="table__cell table__bottomline-cell" id="sleep__average"></td>
+          <td
+            class="table__cell table__bottomline-cell"
+            id="sleep__average"
+          ></td>
           <td class="table__cell table__bottomline-cell"></td>
           <td class="table__cell table__bottomline-cell"></td>
           <td class="table__cell table__bottomline-cell"></td>
@@ -164,6 +169,7 @@
     </table>
 
     <script src="moment.js"></script>
-    <script src="./script.js"></script>
+    <script src="timePicker.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
