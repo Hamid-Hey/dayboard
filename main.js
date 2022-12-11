@@ -62,9 +62,13 @@ todayRow.classList.add("current-day");
 
 let input = document.getElementsByClassName("input");
 
-function toSeconds(id) {
-  let inputValue = document.getElementById(id).value;
+function toSeconds(inputId) {
+  let inputValue = document.getElementById(inputId).value;
   let splittedTime = inputValue.split(":").map((item) => parseInt(item));
+
+  if (splittedTime.length === 2) {
+    splittedTime.push(0);
+  }
 
   let totalSeconds =
     splittedTime[0] * 3600 + splittedTime[1] * 60 + splittedTime[2];
@@ -103,7 +107,7 @@ function aveColumn() {
 
   ave = activeItems !== 0 ? sum / activeItems : sum;
 
-  document.getElementById("sleep__average").innerText = timeFormater(ave);
+  document.getElementById("sleep__average").innerText = timeFormatter(ave);
 }
 
 function sumColumn() {
@@ -118,16 +122,18 @@ function sumColumn() {
     sum += value;
   }
 
-  document.getElementById("sleep__total").innerText = timeFormater(sum);
+  document.getElementById("sleep__total").innerText = timeFormatter(sum);
 }
 
-function timeFormater(timeInSeconds) {
+function timeFormatter(timeInSeconds) {
   const hours = Math.floor(timeInSeconds / 3600);
   const minutes = Math.floor((timeInSeconds - hours * 3600) / 60);
   const seconds = Math.floor(timeInSeconds - (hours * 3600 + minutes * 60));
 
-  if (hours + minutes + seconds !== 0) {
+  if (hours + minutes + seconds !== 0 && seconds !== 0) {
     return `${hours}:${minutes}:${seconds}`;
+  } else if (hours + minutes + seconds !== 0 && seconds === 0) {
+    return `${hours}:${minutes}:0${seconds}`;
   } else {
     return "";
   }
