@@ -139,7 +139,7 @@ function timeFormatter(timeInSeconds) {
   }
 }
 
-function onBlur() {
+function onChange() {
   aveColumn();
   sumColumn();
 }
