@@ -32,9 +32,11 @@ function activate() {
 function show(timePickable) {
   const picker = buildPicker(timePickable);
   const { bottom: top, left } = timePickable.getBoundingClientRect();
+  const timePickableWidth = timePickable.parentElement.offsetWidth;
+  const leftShift = timePickableWidth / 2 - 40;
 
   picker.style.top = `${top}px`;
-  picker.style.left = `${left}px`;
+  picker.style.left = `${left + leftShift}px`;
 
   document.body.appendChild(picker);
 
@@ -72,7 +74,7 @@ function buildPicker(timePickable) {
   });
   selects.minute.addEventListener("change", () => {
     timePickable.value = getTimeStringFromPicker(picker);
-    
+
     timePickable.dispatchEvent(new Event("change"));
   });
 
