@@ -1,5 +1,3 @@
-let weekFirstDay = moment().startOf("week");
-
 const weekDays = [
   {
     day: "Sunday",
@@ -38,6 +36,65 @@ const weekDays = [
   },
 ];
 
+const activities = Array.from(document.querySelectorAll(".activity")).map(
+  (item) => item.innerText
+);
+
+function setInputCellsIds() {
+  activities.map((activity, index) => {
+    const columnCells = document.querySelectorAll(`td:nth-child(${index + 3})`);
+    const inputColumnCells = Array.from(columnCells).slice(1, 8);
+
+    inputColumnCells.forEach((cell) =>
+      cell.setAttribute("id", `${activity}__cell`)
+    );
+  });
+}
+
+function setAveCellsIds() {
+  activities.map((activity, index) => {
+    const aveRowCells = document.querySelectorAll(
+      `.ave__row td:nth-child(${index + 3})`
+    );
+
+    aveRowCells.forEach((cell) => {
+      cell.setAttribute("id", `${activity}__ave`);
+    });
+  });
+}
+
+function setTotalCellsIds() {
+  activities.map((activity, index) => {
+    const totalRowCells = document.querySelectorAll(
+      `.total__row td:nth-child(${index + 3})`
+    );
+
+    totalRowCells.forEach((cell) => {
+      cell.setAttribute("id", `${activity}__total`);
+    });
+  });
+}
+
+function setInputIds() {
+  weekDays.map((item, index) => {
+    const inputs = document.querySelectorAll(
+      `td:nth-child(${index + 3}) > input`
+    );
+    Array.from(inputs).map((i, idx) => {
+      const prefix = activities[index];
+      const suffix = weekDays[idx].day;
+      i.setAttribute("id", `${prefix}__${suffix}`);
+    });
+  });
+}
+
+setInputCellsIds();
+setAveCellsIds();
+setTotalCellsIds();
+setInputIds();
+
+let weekFirstDay = moment().startOf("week");
+
 weekDays[0].date = weekFirstDay.format("MM/DD/YYYY");
 
 weekDays.forEach((day, index) => {
@@ -62,8 +119,8 @@ todayRow.classList.add("current-day");
 
 let input = document.getElementsByClassName("input");
 
-function toSeconds(inputId) {
-  let inputValue = document.getElementById(inputId).value;
+function toSeconds(input) {
+  let inputValue = document.getElementById(input.id).value;
   let splittedTime = inputValue.split(":").map((item) => parseInt(item));
 
   if (splittedTime.length === 2) {
@@ -76,21 +133,11 @@ function toSeconds(inputId) {
   return totalSeconds || 0;
 }
 
-function getIds(className) {
-  /*just pass string literal as an argement */
-  let elements = document.getElementsByClassName(className);
-  let arrayOfElements = Array.from(elements);
-
-  let ids = arrayOfElements.map((item) => item.id);
-  return ids;
-}
-
-function aveColumn() {
+function aveColumn(columnId, aveCellId) {
   const secondsArray = [];
   let sum = 0;
   let ave = 0;
-
-  getIds("input").map((item) => {
+  Array.from(document.querySelectorAll(`#${columnId} > input`)).map((item) => {
     secondsArray.push(toSeconds(item));
   });
 
@@ -107,22 +154,21 @@ function aveColumn() {
 
   ave = activeItems !== 0 ? sum / activeItems : sum;
 
-  document.getElementById("sleep__average").innerText = timeFormatter(ave);
+  document.getElementById(`${aveCellId}`).innerText = timeFormatter(ave);
 }
 
-function sumColumn() {
+function sumColumn(columnId, sumCellId) {
   const secondsArray = [];
   let sum = 0;
 
-  getIds("input").map((item) => {
+  Array.from(document.querySelectorAll(`#${columnId} > input`)).map((item) => {
     secondsArray.push(toSeconds(item));
   });
 
   for (let value of secondsArray) {
     sum += value;
   }
-
-  document.getElementById("sleep__total").innerText = timeFormatter(sum);
+  document.getElementById(`${sumCellId}`).innerText = timeFormatter(sum);
 }
 
 function timeFormatter(timeInSeconds) {
@@ -139,7 +185,11 @@ function timeFormatter(timeInSeconds) {
   }
 }
 
-function onChange() {
-  aveColumn();
-  sumColumn();
+function onChange(event) {
+  const columnId = event.target.parentElement.id;
+  const aveCellId = columnId.split("__")[0].concat("__ave");
+  const sumCellId = columnId.split("__")[0].concat("__total");
+
+  aveColumn(columnId, aveCellId);
+  sumColumn(columnId, sumCellId);
 }
