@@ -176,10 +176,12 @@ function timeFormatter(timeInSeconds) {
   const minutes = Math.floor((timeInSeconds - hours * 3600) / 60);
   const seconds = Math.floor(timeInSeconds - (hours * 3600 + minutes * 60));
 
-  if (hours + minutes + seconds !== 0 && seconds !== 0) {
-    return `${hours}:${minutes}:${seconds}`;
-  } else if (hours + minutes + seconds !== 0 && seconds === 0) {
-    return `${hours}:${minutes}:0${seconds}`;
+  const hour = hours.toString().padStart(2, "0");
+  const minute = minutes.toString().padStart(2, "0");
+  const second = seconds.toString().padStart(2, "0");
+
+  if (timeInSeconds !== 0) {
+    return `${hour}:${minute}:${second}`;
   } else {
     return "";
   }
