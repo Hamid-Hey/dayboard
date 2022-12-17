@@ -161,16 +161,6 @@ table > thead {
 }
 
 .table__bottomline-cell {
-  background-color: rgb(211, 250, 233);
-}
-
-.current-day {
-  box-shadow: 0px 0px 20px 14px #00968861;
-  position: relative;
-}
-
-#sleep__average,
-#sleep__total {
   font-size: 15px;
   font-weight: 500;
   color: rgb(99, 99, 99);
@@ -178,13 +168,18 @@ table > thead {
   text-align: center;
 }
 
+.current-day {
+  box-shadow: 0px 0px 20px 14px #00968861;
+  position: relative;
+}
+
 .input {
   font-size: 15px;
   color: rgb(99, 99, 99);
   background: none;
   text-align: center;
-  width: 100px;
-  height: 30px;
+  height: 36px;
+  width: 162px;
   border: none;
 }
 
@@ -192,7 +187,7 @@ table > thead {
   background-color: rgb(193, 243, 221);
 }
 
-.table__cell-sleep {
+.table__cell-input {
   padding: 0px !important;
 }
 
