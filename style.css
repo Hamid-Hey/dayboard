@@ -161,7 +161,7 @@ table > thead {
 }
 
 .current-day {
-  box-shadow: 0px 0px 20px 14px #00968861;
+  box-shadow: 0px 0px 4px 3px #9de7cbf5;
   position: relative;
 }
 
