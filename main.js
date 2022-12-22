@@ -40,17 +40,6 @@ const activities = Array.from(document.querySelectorAll(".activity")).map(
   (item) => item.innerText
 );
 
-function setInputCellsIds() {
-  activities.map((activity, index) => {
-    const columnCells = document.querySelectorAll(`td:nth-child(${index + 3})`);
-    const inputColumnCells = Array.from(columnCells).slice(1, 8);
-
-    inputColumnCells.forEach((cell) =>
-      cell.setAttribute("id", `${activity}__cell`)
-    );
-  });
-}
-
 function setAveCellsIds() {
   activities.map((activity, index) => {
     const aveRowCells = document.querySelectorAll(
@@ -88,7 +77,6 @@ function setInputIds() {
   });
 }
 
-setInputCellsIds();
 setAveCellsIds();
 setTotalCellsIds();
 setInputIds();
@@ -137,7 +125,11 @@ function aveColumn(columnId, aveCellId) {
   const secondsArray = [];
   let sum = 0;
   let ave = 0;
-  Array.from(document.querySelectorAll(`#${columnId} > input`)).map((item) => {
+  Array.from(
+    document.querySelectorAll(
+      `[id^='${columnId}']:not([id$='ave'],[id$='total'])`
+    )
+  ).map((item) => {
     secondsArray.push(toSeconds(item));
   });
 
@@ -161,7 +153,11 @@ function sumColumn(columnId, sumCellId) {
   const secondsArray = [];
   let sum = 0;
 
-  Array.from(document.querySelectorAll(`#${columnId} > input`)).map((item) => {
+  Array.from(
+    document.querySelectorAll(
+      `[id^='${columnId}']:not([id$='ave'],[id$='total'])`
+    )
+  ).map((item) => {
     secondsArray.push(toSeconds(item));
   });
 
@@ -188,9 +184,9 @@ function timeFormatter(timeInSeconds) {
 }
 
 function onChange(event) {
-  const columnId = event.target.parentElement.id;
-  const aveCellId = columnId.split("__")[0].concat("__ave");
-  const sumCellId = columnId.split("__")[0].concat("__total");
+  const columnId = event.target.id.split("__")[0];
+  const aveCellId = columnId.concat("__ave");
+  const sumCellId = columnId.concat("__total");
 
   aveColumn(columnId, aveCellId);
   sumColumn(columnId, sumCellId);
