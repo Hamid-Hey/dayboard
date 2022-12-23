@@ -195,11 +195,12 @@ function onChange(event) {
 function disableFutureInputs() {
   const inputs = Array.from(document.querySelectorAll("input"));
   const todayIndex = weekDays.findIndex((item) => item.day === today);
-
   const startIndex = activities.length * (1 + todayIndex);
+
   inputs.slice(startIndex).forEach((item) => {
     item.setAttribute("disabled", "");
     item.parentElement.style.background = "rgb(213 228 221 / 37%)";
+    item.classList.add("noHover");
   });
 }
 
