@@ -179,6 +179,10 @@ table > thead {
   background-color: rgb(193, 243, 221);
 }
 
+.noHover {
+  pointer-events: none;
+}
+
 .table__cell-input {
   padding: 0px !important;
 }

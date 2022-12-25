@@ -40,6 +40,28 @@ const activities = Array.from(document.querySelectorAll(".activity")).map(
   (item) => item.innerText
 );
 
+function setHtmlCells() {
+  weekDays.forEach((item) => {
+    const dayRow = document.getElementById(`${item.day}`);
+
+    let inputs = "";
+    for (let i = 1; i <= activities.length; i++) {
+      inputs += `<td class="table__cell table__cell-input">
+                  <input type="text" class="input time-pickable" onchange="onChange(event)" readonly />
+                 </td>`;
+    }
+
+    dayRow.insertAdjacentHTML(
+      "beforeend",
+      `<td class="table__cell table__date"></td>
+      ${inputs}
+      <td class="table__cell-added"></td>`
+    );
+  });
+}
+
+setHtmlCells();
+
 function setAveCellsIds() {
   activities.map((activity, index) => {
     const aveRowCells = document.querySelectorAll(
@@ -195,11 +217,12 @@ function onChange(event) {
 function disableFutureInputs() {
   const inputs = Array.from(document.querySelectorAll("input"));
   const todayIndex = weekDays.findIndex((item) => item.day === today);
-
   const startIndex = activities.length * (1 + todayIndex);
+
   inputs.slice(startIndex).forEach((item) => {
     item.setAttribute("disabled", "");
     item.parentElement.style.background = "rgb(213 228 221 / 37%)";
+    item.classList.add("noHover");
   });
 }
 
